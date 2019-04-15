@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Meta -->
+  <meta name="description" content="Premium Subscription Bots and Ecosystem">
+  <meta name="author" content="NineKit">
+
+  <title>Prove.Club - Where You Find Results</title>
+
+</head>
+
+<body>
+  <script>
+    var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("r");
+console.log(c);
+if (c != undefined){
+  sessionStorage['ref'] = c
+ }
+    // similar behavior as an HTTP redirect
+    window.location.replace("main/index.html");
+  </script>
+</body>
+
+</html>
+
+<!-- 1353/41114 -->

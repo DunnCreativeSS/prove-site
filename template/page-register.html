@@ -1,0 +1,163 @@
+<!--
+ // **************************************************
+ // ******* Name: arvid
+ // ******* Description: Bootstrap 4 Admin Dashboard
+ // ******* Version: 1.0.0
+ // ******* Released on 2019-02-13 00:31:53
+ // ******* Support Email : quixlab.com@gmail.com
+ // ******* Support Skype : sporsho9
+ // ******* Author: Quixlab
+ // ******* URL: https://quixlab.com
+ // ******* Themeforest Profile : https://themeforest.net/user/quixlab
+ // ******* License: ISC
+ // ***************************************************
+-->
+
+
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)
+    [0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+var url_string = window.location.href; //window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("r");
+console.log(c);
+  if (c != undefined){
+  sessionStorage['ref'] = c
+ }
+function doClick(){
+if ($('#pass1').val()  == '' || $('#pass1').val() != $('#pass2').val()){
+alert('Passwords don\'t match and not be empty.')
+}else {
+let pass = $('#pass1').val();
+let name = $('#name').val()
+console.log('name: ' + name)
+    $.post("http://34.73.210.244:8083/register",
+      {
+        pass1: pass,    
+        name: name,
+        ref: sessionStorage['ref'] || ""
+      },
+      function(data, status){
+        console.log("Data: " + data + "\nStatus: " + status);
+      if (data.err){
+        alert(data.err)
+      }
+      console.log(data);
+      if (data.success){
+
+        alert(data.success)
+         ga('send', {
+  hitType: 'event',
+  eventCategory: 'signup',
+  eventAction: name,
+  eventLabel: ''
+});
+      }
+      });
+
+}
+}
+</script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Prove Signup</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    
+</head>
+
+<body class="h-100">
+    <div id="preloader"><div class="spinner"><div class="spinner-a"></div><div class="spinner-b"></div></div></div>
+    <div class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-md-5">
+                    <div class="form-input-content">
+                        <div class="card card-login">
+                            <div class="card-header text-center d-block">
+                                <a href="index.html">
+                                    <h4 class="mb-0 p-2"><strong>Prove</strong></h4>
+                                </a>
+                            </div>
+                            <div class="card-body mt-3">
+			<script>
+//$(document).ready(function(){
+let dontgo = false;
+
+function checkPass(){
+var pass1 = $('#pass1').val()
+var pass2 = $('#pass2').val()
+var good = "#666c66"
+var bad = "#ff6666"
+
+if (pass1==''){
+alert('must have a password')
+dontgo=false
+}else {
+    dontgo = true
+}
+if (pass1 != pass2){
+
+dontgo=false
+}
+else {
+dontgo = true
+alert('Passwords Dont Match');
+}
+}
+//})
+</script>
+
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" placeholder="Username" id='name' name='name'>
+                                    </div><!--
+                                    <div class="form-group mb-4">
+                                        <input type="email" class="form-control" placeholder="Email">
+                                    </div>-->
+                                    <div class="form-group mb-4">
+                                        <input type="password" class="form-control" placeholder="Password" name='pass' id='pass1'>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="password" class="form-control"  placeholder="Confirm password" id='pass2'>
+                                    </div>
+                                    <div class="form-group ml-3 mb-5">
+                                        <input id="checkbox1" type="checkbox" checked>
+                                        <label class="label-checkbox ml-2 mb-0" for="checkbox1">I accept the <a href="#">Terms and conditions</a></label>
+                                    </div>
+
+
+<div id"confirmMesage" class="confirmMessage"></div>                                     <button class="btn-primary btn-lg btn-block border-0" onclick="doClick()" type="submit">Register</button>
+
+                            </div>
+                            <div class="card-footer text-center border-0 pt-0">
+                                <p class="mb-1">Already have an account?</p>
+                                <h6><a href="page-login.html">Click me to Log in</a></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+    <!-- Common JS -->
+    <script src="../../assets/plugins/common/common.min.js"></script>
+    <!-- Custom script -->
+    <script src="../js/custom.min.js"></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/quixnav.js"></script>
+</body>
+
+</html>
