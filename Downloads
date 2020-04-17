@@ -152,7 +152,7 @@ for (var name2 in result[0].names){
 
     // TODO: Change code below to process the `response` object:
     console.log(JSON.stringify(response, null, 2));
-    res.redirect('http://prove.club/main/template/manage.html')
+    res.redirect('http://34.83.217.103/main/template/manage.html')
   });
 });
 
@@ -427,7 +427,7 @@ ex = request.body.ex
 	createVMWithStartupScript('test' + Math.floor(Math.random() * 1000000), request.body.current_user_id)
 	}
 	}
-    res.redirect('http://prove.club/main/template/manage.html')
+    res.redirect('http://34.83.217.103/main/template/manage.html')
 
     })
 })

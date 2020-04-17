@@ -54,7 +54,7 @@ console.log(c);
 
 let pass = $('#pass').val();
 let name = $('#name').val()
-    $.post("http://prove.club:8083/login",
+    $.post("http://34.83.217.103:8083/login",
       {
         pass: pass,    
         name: name
@@ -66,7 +66,7 @@ let name = $('#name').val()
       }
       console.log(data);
       if (data.success){
-        window.location.replace("http://prove.club/template/index.html");
+        window.location.replace("http://34.83.217.103/template/index.html");
       }
       });
 }

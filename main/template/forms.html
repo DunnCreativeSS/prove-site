@@ -19,13 +19,13 @@
 <head>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
-     $.get("http://34.73.210.244:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
+     $.get("http://34.83.217.103:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
 console.log(data)
 if (data.current_user_id){
 setTimeout(function(){
 $('#menu').append('<li><a href="./manage.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Manage Bots</span></a></li><li><a href="./launch.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Launch Bots</span></a></li>')
 
-$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' PRO CREDITS! <span></span></strong>')
+$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' DEPOSITED ETH! <span></span></strong>')
 }, 500)
 }
 })

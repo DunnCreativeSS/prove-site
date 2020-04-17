@@ -31,7 +31,7 @@
     { "addr": "0x0000000000000000000000000000000000000000", "name": "ETH", "fullName": "Ethereum", "decimals": 18 }
   ],
   "tokens": [
-    { "addr": "0xf50b05d1be8478a8a9a359309fc0978a2e94bc31", "name": "PRO", "fullName": "Prove", "decimals": 0 }
+    { "addr": "0x0000000000000000000000000000000000000000", "name": "PRO", "fullName": "Prove", "decimals": 0 }
   ],
   "defaultPair": { "token": "PRO", "base": "ETH" }
 }

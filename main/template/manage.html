@@ -37,13 +37,13 @@ console.log(c);
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
    </script>  <script>
-     $.get("http://34.73.210.244:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
+     $.get("http://34.83.217.103:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
 console.log(data)
 if (data.current_user_id){
 setTimeout(function(){
 $('#menu').append('<li><a href="./manage.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Manage Bots</span></a></li><li><a href="./launch.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Launch Bots</span></a></li>')
 
-$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' PRO CREDITS! <span></span></strong>')
+$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' DEPOSITED ETH! <span></span></strong>')
 }, 500)
 }
 })
@@ -94,29 +94,27 @@ $('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' PRO CREDITS!
  <script>
 let Abi = JSON.parse('[{"constant":true,"inputs":[],"name":"mintingFinished","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"renounceOperator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"account","type":"address"}],"name":"removeMinter","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"cap","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"mint","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"value","type":"uint256"}],"name":"burn","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"transferEnabled","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"isOperator","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"renounceOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"value","type":"uint256"}],"name":"burnFrom","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"finishMinting","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"tokenAddress","type":"address"},{"name":"tokenAmount","type":"uint256"}],"name":"recoverERC20","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"isOwner","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"account","type":"address"}],"name":"addMinter","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"renounceMinter","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"account","type":"address"}],"name":"addOperator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"account","type":"address"}],"name":"isMinter","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"account","type":"address"}],"name":"removeOperator","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"enableTransfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[{"name":"name","type":"string"},{"name":"symbol","type":"string"},{"name":"decimals","type":"uint8"},{"name":"cap","type":"uint256"},{"name":"initialSupply","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[],"name":"MintFinished","type":"event"},{"anonymous":false,"inputs":[],"name":"TransferEnabled","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"previousOwner","type":"address"},{"indexed":true,"name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"account","type":"address"}],"name":"OperatorAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"account","type":"address"}],"name":"OperatorRemoved","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"account","type":"address"}],"name":"MinterAdded","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"account","type":"address"}],"name":"MinterRemoved","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}]')
       
-token = web3.eth.contract(Abi).at('0xf50b05d1be8478a8a9a359309fc0978a2e94bc31');
-       $.get("http://34.73.210.244:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
+token = web3.eth.contract(Abi).at('0x0000000000000000000000000000000000000000');
+       $.get("http://34.83.217.103:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
 console.log(data)
 if (data.credits != undefined){
 
 $('.nk-nav-scroll ul').append('<li><a href="./manage.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Manage Bots</span></a></li><li><a href="./launch.html" aria-expanded="false"><i class="mdi mdi-chart-areaspline"></i> <span class="nav-text">Launch Bots</span></a></li>')
-$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' PRO CREDITS! <span></span></strong>')
+$('#say2').html('<strong class="ml-2">YOU HAVE ' + data.credits + ' DEPOSITED ETH! <span></span></strong>')
 }
 })
-        function sendTokens(current_user_id) {
+      async function sendTokens(current_user_id) {
     console.log('click')
     console.log(web3.eth.defaultAccount)
-    var _sendTo = "0x9c33b574c8D013Ba501a897484E3b92a27A3FDB8"
+    var _sendTo = "0xFcB34C506cDD97f3995Df43e6128CFa05c8a3D6F"
     var _amount = $('#contribution').val()
     console.log(_amount)
-    var tx = token.transfer(_sendTo, _amount, function(err, transactionHash) {
-  if (!err)
-    tx = (transactionHash);
+    var tx = web3.eth.sendTransaction({to:_sendTo, from:web3.eth.defaultAccount, value:web3.toWei(_amount, "ether")}, function(e){ console.log(e)
 
-$.post("http://34.73.210.244:8083/orders",
+$.post("http://34.83.217.103:8083/orders",
       {
         current_user_id:sessionStorage['loggedin'],
-        tx: tx,
+         
         credits: _amount
       },
       function(data, status){
@@ -130,9 +128,10 @@ $.post("http://34.73.210.244:8083/orders",
 
       }
       });
-
 })
+
 }
+
 
        function setCookie(name,value,days) {
     var expires = "";
@@ -196,7 +195,7 @@ web3.eth.getAccounts(function(err, accounts) {
             function buy() {
               AirSwap.Trader.render({
                   mode: 'buy',
-                  token: '0xf50b05d1be8478a8a9a359309fc0978a2e94bc31',
+                  token: '0x0000000000000000000000000000000000000000',
                   amount: 5000,
                   onCancel: function () {
                       alert('Trade was canceled.');
@@ -209,7 +208,7 @@ web3.eth.getAccounts(function(err, accounts) {
             function sell() {
               AirSwap.Trader.render({
                   mode: 'sell',
-                  token: '0xf50b05d1be8478a8a9a359309fc0978a2e94bc31',
+                  token: '0x0000000000000000000000000000000000000000',
                   onCancel: function () {
                       alert('Trade was canceled.');
                   },
@@ -451,14 +450,14 @@ $('#say').html('Hi there! Register or login?')
                 </div><div id="myModal" class="modal">
       <span class="close">&times;</span>
 
-            <form action="http://34.73.210.244:8083" method="POST" id='theform'></form>
+            <form action="http://34.83.217.103:8083" method="POST" id='theform'></form>
   </div>
                 <div id="rows">
                 <script>
                   let names;
                     let botdata;
                     $('#rows').append("It takes a few minutes for bots to warm up. Have no fear!<br>")
-                    $.get(" http://34.73.210.244:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
+                    $.get(" http://34.83.217.103:8083?current_user_id=" + sessionStorage['loggedin'], {}, function (data, status){
 
                         console.log(data)
                         names = data.names
@@ -477,7 +476,7 @@ window.onclick = function(event) {
   }
 }
 function deleteit(id){
- $.post("http://34.73.210.244:8083/delete", {name:names[id], current_user_id:sessionStorage['loggedin']}, function (data, status){
+ $.post("http://34.83.217.103:8083/delete", {name:names[id], current_user_id:sessionStorage['loggedin']}, function (data, status){
 
  })
 

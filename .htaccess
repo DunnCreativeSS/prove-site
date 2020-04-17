@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteBase /
+RewriteRule /chart?(.*) http://$1 [P]
+

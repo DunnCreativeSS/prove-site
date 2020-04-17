@@ -38,6 +38,12 @@ app.use(express.urlencoded());
 app.use(express.json());
 app.set('view engine', 'ejs');
 app.listen(process.env.binPORT || 8083, function() {});
+ let KEY = ''
+ let KEY2 = ''
+ let script = ''
+ let email = ''
+ let SECRET = ''
+ let SECRET2 = ''
     let binApiKey = 'XGjzcjFqDgd06qg6fNpjAIUzzebrbURXup3Z7P1OCXBoq8SoFvnYV0pgCoN69gbG',
     binApiSecret = 'yZ1oFZFGkJjn3CPK9XsRkuJXQJzKohZPhhv6Jz5GmcsAN1cOVevEWeSLJPBNzlYM'
 let ex;
@@ -139,8 +145,8 @@ for (var name2 in result[0].names){
 })
   authorize(function(authClient) {
   var request = {
-    project: 'rare-daylight-236219',
-    zone: 'us-central1-c',
+    project: 'coindex-ai-v0',
+    zone: 'europe-west2-c',
     // Name of the instance resource to delete.
     instance: name,  // TODO: Update placeholder value.
 
@@ -154,7 +160,7 @@ for (var name2 in result[0].names){
 
     // TODO: Change code below to process the `response` object:
     console.log(JSON.stringify(response, null, 2));
-    res.redirect('http://prove.club/main/template/manage.html')
+    res.redirect('http://34.83.217.103/main/template/manage.html')
   });
 });
 
@@ -174,11 +180,7 @@ function authorize(callback) {
 
 
 })
-async function checkTx(tx, credits, current_user_id){
-  request.get("https://api.etherscan.io/api?module=transaction&action=gettxreceiptstatus&txhash=" + tx + "&apikey=Y54HQWC3NJ3E9ZSKKM5347WPHZ2D7KA2XW",function(e,r,data){
-  console.log(data);
-  data = JSON.parse(data);
-  if (data.message == 'OK'){
+async function checkTx(credits, current_user_id){
 
 dbo.collection("customers4").findOne({user_id: current_user_id}, function(err, result2) {
 if (result2){
@@ -188,175 +190,30 @@ if (result2){
     console.log("1 document inserted");
   
   })
-}
-})
+
 
   }
-  else if (data.result == 0){
-    
-  }
-  else {
-    setTimeout(function(){
-      checkTx(tx, credits, current_user_id);
-    }, 1000)
-  }
+
 })
 }
 app.get('/getavailbots', (request, res) => {
 //to-do: add more bots, from db
 let bots = []
-bots.push({name: "Jare's Higher Liquidity Less Spread Binance Bot",
-  description: "This bot finds pairs above and below certain thresholds in order to help you gain volume and hopefully scrape a healthy profit!",
-  script: 'modular.js',
+bots.push({name: "Coindex MM",
+  description: "This is Coindex MM",
+  script: 'market_maker.py',
   settings:{
-    ex:"binance",
+  script: 'market_maker.py',
+  trial: false,
+    email:'',
+    KEY:"",
 
-theurl:"Set this to the ip or domain name you're running the bot on, like http://localhost",
+SECRET:"",
+    KEY2:"",
 
-binPORT1:80,
-url:"Set this to the public name of your bot. Like Jare's Binance Bot, then the URL",
-bpSetting:"1.000007",
-spSetting:"0.999993",
-hourlyMult:"96",
-minProfit:"1.0022",
-targetSpread:"0.25",
-targetVolDiv:".65",
-targetVolMult:"200000",
-maxOrder:"2000",
-maxBetterVol:"1.5",
-stoploss:"0.88",
-neversellatalossReductionIntervalMinutes:"10",
-neversellataloss:"true",
-dorsistopsell:"false",
-dorsi:"true",
-dobollingerbands:"true",
-lesstrades:"false",
-testing:"false",
-binApiKey:"",
-binApiSecret:"",
-btcref:"Set this to the current price of BTC",
-alt:"BNB",
-theonebase:"",
-theoneasset:"",
-percentToBuy:"",
-targetBid:"",
-maxBuyBtc:""
+SECRET2:""
+
   }})
-
-  bots.push({name: "Jare's Lower Liquidity Higher Spread Binance Bot",
-  description: "This bot finds pairs above and below certain thresholds in order to help you gain volume and hopefully scrape a healthy profit!",
-  script: 'modular.js',
-  settings:{
-    ex:"binance",
-
-theurl:"Set this to the ip or domain name you're running the bot on, like http://localhost",
-
-binPORT1:80,
-url:"Set this to the public name of your bot. Like Jare's Binance Bot, then the URL",
-bpSetting:"1.000007",
-spSetting:"0.999993",
-hourlyMult:"96",
-minProfit:"1.007",
-targetSpread:"0.7",
-targetVolDiv:"5",
-targetVolMult:"200000",
-maxOrder:"2000",
-maxBetterVol:"1.5",
-stoploss:"0.88",
-neversellatalossReductionIntervalMinutes:"10",
-neversellataloss:"true",
-dorsistopsell:"false",
-dorsi:"true",
-dobollingerbands:"true",
-lesstrades:"false",
-testing:"false",
-binApiKey:"",
-binApiSecret:"",
-btcref:"Set this to the current price of BTC",
-alt:"BNB",
-theonebase:"",
-theoneasset:"",
-percentToBuy:"",
-targetBid:"",
-maxBuyBtc:""
-  }})
-
-bots.push({name: "Jare's HitBTC Bot",
-  description: "This bot finds pairs above and below certain thresholds in order to help you gain volume and hopefully scrape a healthy profit!",
-  script: 'modular.js',
-  settings:{
-    ex:"hitbtc",
-
-theurl:"Set this to the ip or domain name you're running the bot on, like http://localhost",
-
-binPORT1:80,
-url:"Set this to the public name of your bot. Like Jare's Binance Bot, then the URL",
-bpSetting:"1.000007",
-spSetting:"0.999993",
-hourlyMult:"96",
-minProfit:"1.009",
-targetSpread:"0.9",
-targetVolDiv:"10",
-targetVolMult:"200000",
-maxOrder:"2000",
-maxBetterVol:"1.5",
-stoploss:"0.88",
-neversellatalossReductionIntervalMinutes:"10",
-neversellataloss:"true",
-dorsistopsell:"false",
-dorsi:"true",
-dobollingerbands:"true",
-lesstrades:"false",
-testing:"false",
-binApiKey:"",
-binApiSecret:"",
-btcref:"Set this to the current price of BTC",
-alt:"ETH",
-theonebase:"",
-theoneasset:"",
-percentToBuy:"",
-targetBid:"",
-maxBuyBtc:""
-  }})
-  bots.push({name: "Jare's Market Volume Enhancing Binance Bot",
-  description: "This bot improves buying and selling as a maker, and increases value by making a market order every x minutes for y% gains!",
-  script: 'modular.js',
-  settings:{
-    ex:"binance",
-
-theurl:"Set this to the ip or domain name you're running the bot on, like http://localhost",
-
-binPORT1:80,
-url:"Set this to the public name of your bot. Like Jare's Binance Bot, then the URL",
-bpSetting:"1.000007",
-spSetting:"0.999993",
-hourlyMult:"96",
-minProfit:"1.0022",
-targetSpread:"0.25",
-targetVolDiv:".65",
-targetVolMult:"200000",
-maxOrder:"2000",
-maxBetterVol:"1.5",
-stoploss:"0.88",
-neversellatalossReductionIntervalMinutes:"10",
-neversellataloss:"true",
-dorsistopsell:"false",
-dorsi:"true",
-dobollingerbands:"true",
-lesstrades:"false",
-testing:"false",
-binApiKey:"",
-binApiSecret:"",
-btcref:"Set this to the current price of BTC",
-alt:"BNB",
-theonebase:"BTC,ETH - what you're trading against",
-theoneasset:"the coin you wish to pump",
-percentToBuy:"ie. 1.0001 would try to increase the price by 0.01% every x minutes",
-targetBid:"if the bid is higher than this number (in base), it won't do the market buy",
-maxBuyBtc:"the max amount of base coins to spend on a given order every 10 minutes",
-betweenOrders:"the # minutes to wait between buys at market"
-  }})
-
 
 res.json({bots})
 })
@@ -366,10 +223,8 @@ app.post('/orders', (request, res) => {
   console.log(current_user_id)
   let credits = parseFloat(request.body.credits)/1133     
   console.log(credits)
-  let tx = request.body.tx
-  console.log(tx)
   setTimeout(function(){
-checkTx(tx, credits, current_user_id)
+checkTx(credits, current_user_id)
   }, 10000)
 
 console.log(current_user_id)
@@ -401,36 +256,21 @@ catch(err){console.log(err)}
 app.post('/', (req, res) => {
   let request = req;
     var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
-ex = request.body.ex
- url2 = request.body.url
- maxBuyBtc = request.body.maxBuyBtc
- targetBid = request.body.targetBid
- percentToBuy = request.body.percentToBuy
- theonebase =  request.body.theonebase
- theoneasset =  request.body.theoneasset
-	binApiKey = request.body.binApiKey
-    binApiSecret = request.body.binApiSecret
-	bpSetting = request.body.bpSetting
-    spSetting = request.body.spSetting
-    hourlyMult = request.body.hourlyMult
-    minProfit = request.body.minProfit
-    targetSpread = request.body.targetSpread
-    targetVolDiv = request.body.targetVolDiv
-    targetVolMult = request.body.targetVolMult
-    maxOrder = request.body.maxOrder
-    maxBetterVol = request.body.maxBetterVol
-    stoploss = request.body.stoploss
-    neversellatalossReductionIntervalMinutes = request.body.neversellatalossReductionIntervalMinutes
-    btcstart = request.body.btcstart
-    usdstart = request.body.usdstart
-    altstart = request.body.altstart
+KEY = request.body.KEY
+KEY2 = request.body.KEY2
+script = request.body.script
+trial = request.body.trial
+initial_balance = request.body.initial_balance
+email = request.body.email
+SECRET = request.body.SECRET
+SECRET2 = request.body.SECRET2
     dbo.collection("customers4").findOne({user_id: request.body.current_user_id}, function(err, result2) {
 	if (result2){
-	if (result2.credits >=0.001){
-	createVMWithStartupScript('test' + Math.floor(Math.random() * 1000000), request.body.current_user_id)
+	if (result2.credits >= 0){
+	createVMWithStartupScript(request.body.email.toLowerCase().split(".").join("").split("_").join("").split("@")[0] + Math.floor(Math.random() * 1000000), request.body.current_user_id)
 	}
 	}
-    res.redirect('http://prove.club/main/template/manage.html')
+    res.redirect('http://34.83.217.103/main/template/manage.html')
 
     })
 })
@@ -439,7 +279,7 @@ const Compute = require('@google-cloud/compute');
 const fetch = require('node-fetch');
 
 const compute = new Compute();
-const zone = compute.zone('us-central1-c');
+const zone = compute.zone('europe-west2-c');
 
 /**
  * Create a new virtual machine with Ubuntu and Apache
@@ -450,7 +290,7 @@ async function createVMWithStartupScript(name, userid) {
   // installs apache and a custom homepage.
     const config = {
     os: 'ubuntu',
-        'machineType': "zones/us-central1-c/machineTypes/g1-small" ,
+        'machineType': "zones/europe-west2-c/machineTypes/e2-standard-2" ,
     http: true,
     metadata: {
       items: [
@@ -458,47 +298,40 @@ async function createVMWithStartupScript(name, userid) {
           key: 'startup-script',
           value: `#! /bin/bash
             # Installs apache and a custom homepage
+            sudo -E su
             apt-get update
-            apt-get install -y git wget gzip build-essential ntpdate
-            
-            curl -sL https://deb.nodesource.com/setup_8.x -o nodesource_setup.sh
+            apt-get install -y git wget gzip build-essential ntpdate python3-pip python3 python3-dev
+            curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
             sudo bash nodesource_setup.sh
             sudo apt-get install nodejs -y
-            git clone http://root:wordpass@marketmakerbot.duckdns.org/root/privatemarketmakerrepo
-              
-ab=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
-            export theurl="http://$ab"
-            export ex="`+ex+`"
-            export url="`+url2+`"
-            
- export maxBuyBtc="`+maxBuyBtc+`"
- export targetBid="`+targetBid+`"
- export percentToBuy="`+percentToBuy+`"
- export theonebase="`+theonebase+`"
-export theoneasset="`+ theoneasset+`"
-            export bpSetting="`+bpSetting+`"
-		    export spSetting="`+spSetting+`"
-		    export hourlyMult="`+hourlyMult+`"
-		    export minProfit="`+minProfit+`"
-		    export targetSpread="`+targetSpread+`"
-		    export targetVolDiv="`+targetVolDiv+`"
-		    export targetVolMult="`+targetVolMult+`"
-		    export maxOrder="`+maxOrder+`"
-		    export maxBetterVol="`+maxBetterVol+`"
-		    export stoploss="`+stoploss+`"
+
+            sudo rm -r deribitMarketMaker
+            git clone https://jare1:-FikS4gi3MVz7K8UxiHP@gitlab.com/CoindexLabs/deribitMarketMaker.git
+      		ab=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
+            export theurl="$ab"
+
+            export KEY="`+KEY+`"
+            export SECRET="`+SECRET+`"
+            export initial_balance="`+initial_balance+`"
+            export KEY2="`+KEY2+`"
+            export SECRET2="`+SECRET2+`"
+            export trial="`+trial+`"
         set rlim_fd_max = 166384
 set rlim_fd_cur = 8192
 sudo echo '* hard nofile 650000' >> /etc/security/limits.conf
 
  ulimit -n 650000
-		    export neversellatalossReductionIntervalMinutes="`+neversellatalossReductionIntervalMinutes+`"
-		    export btcstart="`+btcstart+`"
-		    export usdstart="`+usdstart+`"
-		    export altstart="`+altstart+`"
-		    cd privatemarketmakerrepo
-		    npm i
+		    
+		    cd deribitMarketMaker
+		    git checkout ryan-stable
+		    npm i ccxt express cors ejs request body-parser ws
+		    nohup node bal.js &
+		    pip3 install quantstats flask ccxt finta deribit_api requests pandas
         sudo ntpdate time.nist.gov
-		    nohup node modular.js &`,
+	      nohup python3 "`+script+`" &
+        sudo chmod +x run_production.sh
+        nohup ./run_production.sh &
+	      `,
         },
       ],
     },
@@ -540,7 +373,7 @@ console.log(config)
     i.push(ip)
     }
     
-  dbo.collection("customers4").update({user_id: userid}, {$set:{ref:result[0].ref, pass: result[0].pass,names: n, user_id: userid, credits: result[0].credits,ips: i}},{upsert: true}, function(err, res) {
+  dbo.collection("customers4").update({user_id: userid}, {$set:{ref:result[0].ref, pass: result[0].pass,names: n, user_id: userid, credits: 1,ips: i}},{upsert: true}, function(err, res) {//result[0].credits,ips: i}},{upsert: true}, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
   })
